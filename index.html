@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to Maps...</title>
   <script>
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // Wait until the page fully loads (avoids race condition in some browsers)
+    window.onload = function () {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    if (/android/i.test(userAgent)) {
-      // Redirect Android users to Google Maps
-      window.location.href = "https://maps.app.goo.gl/LfS34zXzJna65ExP8";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // Redirect iOS users to Apple Maps
-      window.location.href = "https://maps.apple.com/?address=Dewali,%20Udaipur,%20313001,%20Rajasthan,%20India&auid=11575827957674050657&ll=24.607600,73.678900&lsp=9902&q=Amour%20By%20The%20Lake&t=m";
-    } else {
-      // Default fallback (for desktop or unknown devices)
-      window.location.href = "https://maps.app.goo.gl/LfS34zXzJna65ExP8";
-    }
+      if (/android/i.test(userAgent)) {
+        // Redirect Android users to Google Maps
+        window.location.replace("https://maps.app.goo.gl/LfS34zXzJna65ExP8");
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // Redirect iOS users to Apple Maps
+        window.location.replace("https://maps.apple.com/?address=Dewali,%20Udaipur,%20313001,%20Rajasthan,%20India&auid=11575827957674050657&ll=24.607600,73.678900&lsp=9902&q=Amour%20By%20The%20Lake&t=m");
+      } else {
+        // Fallback for desktop or unknown devices
+        window.location.replace("https://maps.app.goo.gl/LfS34zXzJna65ExP8");
+      }
+    };
   </script>
 </head>
 <body>
-  <p>Redirecting to maps...</p>
+  <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+    Redirecting to your maps app...
+  </p>
 </body>
 </html>
